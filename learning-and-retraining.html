@@ -53,11 +53,84 @@
   </header>
   <section class="content">
 <ul>
-  <li>Simpler is to pre-train a router and use frozen model (offline learning)</li>
-  <li>Some papers examine algorithms that learn as you use models and provide preference data (online learning)</li>
+  <li>Simpler is to pre-train a router and use frozen model (offline learning)
+    <figure class="diagram">
+      <svg viewBox="0 0 740 200" role="img" aria-label="Diagram: training data trains a router once, offline; the resulting frozen router is then reused unchanged to handle every incoming request.">
+        <defs>
+          <marker id="arrow-navy-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="345" y="10" width="150" height="38" rx="8"/>
+        <text class="dg-label" x="420" y="30">Training data</text>
+        <rect class="dg-box" x="10" y="90" width="140" height="40" rx="8"/>
+        <text class="dg-label" x="80" y="111">New request</text>
+        <rect class="dg-box-chosen" x="330" y="90" width="180" height="40" rx="8"/>
+        <text class="dg-label-chosen" x="420" y="111">Frozen router</text>
+        <rect class="dg-box" x="560" y="90" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="635" y="111">Decision</text>
+        <text class="dg-label-alt" x="420" y="155">(reused unchanged for every request)</text>
+        <path class="dg-arrow" d="M420,48 L420,88" marker-end="url(#arrow-navy-1)"/>
+        <text class="dg-caption-left" x="430" y="72">train once (offline)</text>
+        <path class="dg-arrow" d="M150,110 L328,110" marker-end="url(#arrow-navy-1)"/>
+        <path class="dg-arrow" d="M510,110 L558,110" marker-end="url(#arrow-navy-1)"/>
+      </svg>
+    </figure>
+  </li>
+  <li>Some papers examine algorithms that learn as you use models and provide preference data (online learning)
+    <figure class="diagram">
+      <svg viewBox="0 0 720 200" role="img" aria-label="Diagram: a request flows through the router to an LLM to produce an answer, and feedback from that answer loops back to continuously update the router, illustrating online learning.">
+        <defs>
+          <marker id="arrow-navy-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="90" width="110" height="40" rx="8"/>
+        <text class="dg-label" x="65" y="111">Request</text>
+        <rect class="dg-box-chosen" x="170" y="90" width="140" height="40" rx="8"/>
+        <text class="dg-label-chosen" x="240" y="111">Router</text>
+        <rect class="dg-box" x="350" y="90" width="110" height="40" rx="8"/>
+        <text class="dg-label" x="405" y="111">LLM</text>
+        <rect class="dg-box" x="500" y="90" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="575" y="111">Answer + feedback</text>
+        <path class="dg-arrow" d="M120,110 L168,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M310,110 L348,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M460,110 L498,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M575,88 C575,20 240,20 240,88" marker-end="url(#arrow-navy-2)"/>
+        <text class="dg-caption" x="405" y="25">update router</text>
+      </svg>
+    </figure>
+  </li>
   <li>Another dimension is what happens when new LLMs become available</li>
   <li>Most routers need to be retrained from scratch</li>
-  <li>Some, such as ones using clustering, only require the new model to be scored. The highest scoring model for each cluster is the best.</li>
+  <li>Some, such as ones using clustering, only require the new model to be scored. The highest scoring model for each cluster is the best.
+    <figure class="diagram">
+      <svg viewBox="0 0 800 220" role="img" aria-label="Diagram: when a new LLM becomes available, most routers must retrain from scratch at high cost, while clustering-based routers only need to score the new model against existing clusters, which is cheap.">
+        <defs>
+          <marker id="arrow-navy-3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+          <marker id="arrow-red-3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="90" width="160" height="40" rx="8"/>
+        <text class="dg-label" x="90" y="111">New LLM available</text>
+        <rect class="dg-box-escalate" x="260" y="20" width="320" height="44" rx="8"/>
+        <text class="dg-label" x="420" y="43">Most routers: retrain from scratch</text>
+        <rect class="dg-box-chosen" x="260" y="150" width="320" height="44" rx="8"/>
+        <text class="dg-label-chosen" x="420" y="173">Clustering: score the new model</text>
+        <rect class="dg-box-escalate" x="620" y="20" width="160" height="44" rx="8"/>
+        <text class="dg-label" x="700" y="43">Costly retrain</text>
+        <rect class="dg-box-chosen" x="620" y="150" width="160" height="44" rx="8"/>
+        <text class="dg-label-chosen" x="700" y="173">Cheap update</text>
+        <path class="dg-arrow-escalate" d="M170,100 L258,42" marker-end="url(#arrow-red-3)"/>
+        <path class="dg-arrow" d="M170,120 L258,172" marker-end="url(#arrow-navy-3)"/>
+        <path class="dg-arrow-escalate" d="M580,42 L618,42" marker-end="url(#arrow-red-3)"/>
+        <path class="dg-arrow" d="M580,172 L618,172" marker-end="url(#arrow-navy-3)"/>
+      </svg>
+    </figure>
+  </li>
 </ul>
   </section>
 </main>

@@ -53,11 +53,133 @@
   </header>
   <section class="content">
 <ul>
-  <li><strong>Difficulty:</strong> estimate how hard the prompt is (e.g. a trained classifier) and send easy ones to a cheap model, hard ones to a costly model</li>
-  <li><strong>Clustering:</strong> group prompts by similarity, then route each cluster to whichever model historically scores best on it</li>
-  <li><strong>RL:</strong> train the router with reinforcement learning, rewarding it for picking the model that balances quality and cost well</li>
-  <li><strong>Uncertainty:</strong> let a model score its own confidence, and escalate to a stronger model whenever confidence is low</li>
-  <li><strong>User preference:</strong> learn from human ratings of which model&rsquo;s answers people actually prefer, and route toward that pattern</li>
+  <li><strong>Difficulty:</strong> estimate how hard the prompt is (e.g. a trained classifier) and send easy ones to a cheap model, hard ones to a costly model
+    <figure class="diagram">
+      <svg viewBox="0 0 640 180" role="img" aria-label="Diagram: a prompt goes through a difficulty classifier; easy prompts route to a cheap model, hard prompts route to a costly model.">
+        <defs>
+          <marker id="arrow-navy-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+          <marker id="arrow-red-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="70" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="55" y="91">Prompt</text>
+        <polygon class="dg-diamond" points="180,52 235,90 180,128 125,90"/>
+        <text class="dg-label" x="180" y="91">Difficulty?</text>
+        <rect class="dg-box" x="330" y="20" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="405" y="41">Cheap model</text>
+        <rect class="dg-box-escalate" x="330" y="120" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="405" y="141">Costly model</text>
+        <path class="dg-arrow" d="M100,90 L123,90" marker-end="url(#arrow-navy-1)"/>
+        <path class="dg-arrow" d="M235,90 L328,40" marker-end="url(#arrow-navy-1)"/>
+        <text class="dg-caption" x="270" y="55">easy</text>
+        <path class="dg-arrow-escalate" d="M235,90 L328,140" marker-end="url(#arrow-red-1)"/>
+        <text class="dg-caption" x="270" y="130">hard</text>
+      </svg>
+    </figure>
+  </li>
+  <li><strong>Clustering:</strong> group prompts by similarity, then route each cluster to whichever model historically scores best on it
+    <figure class="diagram">
+      <svg viewBox="0 0 660 180" role="img" aria-label="Diagram: a new prompt is matched to its nearest cluster, and each cluster routes to the model that historically scores best for it.">
+        <defs>
+          <marker id="arrow-navy-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="70" width="110" height="40" rx="8"/>
+        <text class="dg-label" x="65" y="91">New prompt</text>
+        <polygon class="dg-diamond" points="200,40 275,90 200,140 125,90"/>
+        <text class="dg-label" x="200" y="91">Nearest cluster?</text>
+        <rect class="dg-box" x="370" y="20" width="180" height="40" rx="8"/>
+        <text class="dg-label" x="460" y="41">Cluster A &rarr; Model X</text>
+        <rect class="dg-box" x="370" y="120" width="180" height="40" rx="8"/>
+        <text class="dg-label" x="460" y="141">Cluster B &rarr; Model Y</text>
+        <path class="dg-arrow" d="M120,90 L123,90" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M275,90 L368,40" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M275,90 L368,140" marker-end="url(#arrow-navy-2)"/>
+      </svg>
+    </figure>
+  </li>
+  <li><strong>RL:</strong> train the router with reinforcement learning, rewarding it for picking the model that balances quality and cost well
+    <figure class="diagram">
+      <svg viewBox="0 0 720 200" role="img" aria-label="Diagram: a state goes through a policy router to a chosen model, producing a reward for quality and cost, which loops back to update the policy.">
+        <defs>
+          <marker id="arrow-navy-3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="90" width="120" height="40" rx="8"/>
+        <text class="dg-label" x="70" y="111">State (prompt)</text>
+        <rect class="dg-box-chosen" x="180" y="90" width="140" height="40" rx="8"/>
+        <text class="dg-label-chosen" x="250" y="111">Policy (router)</text>
+        <rect class="dg-box" x="360" y="90" width="120" height="40" rx="8"/>
+        <text class="dg-label" x="420" y="111">Chosen model</text>
+        <rect class="dg-box" x="520" y="90" width="180" height="40" rx="8"/>
+        <text class="dg-label" x="610" y="111">Reward (quality, cost)</text>
+        <path class="dg-arrow" d="M130,110 L178,110" marker-end="url(#arrow-navy-3)"/>
+        <path class="dg-arrow" d="M320,110 L358,110" marker-end="url(#arrow-navy-3)"/>
+        <path class="dg-arrow" d="M480,110 L518,110" marker-end="url(#arrow-navy-3)"/>
+        <path class="dg-arrow" d="M610,88 C610,20 250,20 250,88" marker-end="url(#arrow-navy-3)"/>
+        <text class="dg-caption" x="420" y="25">update policy</text>
+      </svg>
+    </figure>
+  </li>
+  <li><strong>Uncertainty:</strong> let a model score its own confidence, and escalate to a stronger model whenever confidence is low
+    <figure class="diagram">
+      <svg viewBox="0 0 780 220" role="img" aria-label="Diagram: a model produces an answer with a confidence score; if confident the answer is returned, otherwise the request escalates to a stronger model.">
+        <defs>
+          <marker id="arrow-navy-4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+          <marker id="arrow-red-4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="90" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="55" y="111">Prompt</text>
+        <rect class="dg-box" x="140" y="90" width="120" height="40" rx="8"/>
+        <text class="dg-label" x="200" y="111">Model</text>
+        <polygon class="dg-diamond" points="420,72 478,110 420,148 362,110"/>
+        <text class="dg-label" x="420" y="111">Confident?</text>
+        <rect class="dg-box" x="650" y="90" width="110" height="40" rx="8"/>
+        <text class="dg-label" x="705" y="111">Answer</text>
+        <rect class="dg-box-escalate" x="340" y="10" width="160" height="38" rx="8"/>
+        <text class="dg-label" x="420" y="30">Stronger model</text>
+        <path class="dg-arrow" d="M100,110 L138,110" marker-end="url(#arrow-navy-4)"/>
+        <path class="dg-arrow" d="M260,110 L360,110" marker-end="url(#arrow-navy-4)"/>
+        <path class="dg-arrow" d="M478,110 L648,110" marker-end="url(#arrow-navy-4)"/>
+        <text class="dg-caption" x="565" y="100">confident</text>
+        <path class="dg-arrow-escalate" d="M420,72 L420,50" marker-end="url(#arrow-red-4)"/>
+        <text class="dg-caption-left" x="430" y="63">low confidence</text>
+        <path class="dg-arrow-escalate" d="M500,29 C580,29 630,60 645,88" marker-end="url(#arrow-red-4)"/>
+      </svg>
+    </figure>
+  </li>
+  <li><strong>User preference:</strong> learn from human ratings of which model&rsquo;s answers people actually prefer, and route toward that pattern
+    <figure class="diagram">
+      <svg viewBox="0 0 760 200" role="img" aria-label="Diagram: human ratings of A versus B comparisons train the router's preference, which then routes new prompts toward the preferred model.">
+        <defs>
+          <marker id="arrow-navy-5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="290" y="10" width="170" height="38" rx="8"/>
+        <text class="dg-label" x="375" y="30">Human ratings (A vs B)</text>
+        <rect class="dg-box" x="10" y="90" width="110" height="40" rx="8"/>
+        <text class="dg-label" x="65" y="111">Prompt</text>
+        <rect class="dg-box-chosen" x="290" y="90" width="170" height="40" rx="8"/>
+        <text class="dg-label-chosen" x="375" y="111">Router</text>
+        <rect class="dg-box" x="550" y="90" width="170" height="40" rx="8"/>
+        <text class="dg-label" x="635" y="111">Preferred model</text>
+        <path class="dg-arrow" d="M375,48 L375,88" marker-end="url(#arrow-navy-5)"/>
+        <text class="dg-caption-left" x="385" y="72">learn preference</text>
+        <path class="dg-arrow" d="M120,110 L288,110" marker-end="url(#arrow-navy-5)"/>
+        <path class="dg-arrow" d="M460,110 L548,110" marker-end="url(#arrow-navy-5)"/>
+      </svg>
+    </figure>
+  </li>
 </ul>
 <p>These are the most common building blocks &mdash; real routers often combine several.</p>
   </section>

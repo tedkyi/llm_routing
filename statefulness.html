@@ -53,11 +53,72 @@
   </header>
   <section class="content">
 <ul>
-  <li>Early routers were stateless, simply scoring the prompt and choosing an LLM</li>
+  <li>Early routers were stateless, simply scoring the prompt and choosing an LLM
+    <figure class="diagram">
+      <svg viewBox="0 0 560 220" role="img" aria-label="Diagram: two separate requests are each scored and routed independently, with no shared memory between them, illustrating a stateless router.">
+        <defs>
+          <marker id="arrow-navy-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="20" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="55" y="41">Prompt A</text>
+        <polygon class="dg-diamond" points="180,8 230,40 180,72 130,40"/>
+        <text class="dg-label" x="180" y="41">Score</text>
+        <rect class="dg-box" x="270" y="20" width="110" height="40" rx="8"/>
+        <text class="dg-label" x="325" y="41">LLM</text>
+        <rect class="dg-box" x="420" y="20" width="100" height="40" rx="8"/>
+        <text class="dg-label" x="470" y="41">Answer</text>
+        <path class="dg-arrow" d="M100,40 L128,40" marker-end="url(#arrow-navy-1)"/>
+        <path class="dg-arrow" d="M230,40 L268,40" marker-end="url(#arrow-navy-1)"/>
+        <path class="dg-arrow" d="M380,40 L418,40" marker-end="url(#arrow-navy-1)"/>
+        <line x1="10" y1="100" x2="520" y2="100" class="dg-arrow-alt"/>
+        <text class="dg-caption" x="265" y="92">no shared state between requests</text>
+        <rect class="dg-box" x="10" y="140" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="55" y="161">Prompt B</text>
+        <polygon class="dg-diamond" points="180,128 230,160 180,192 130,160"/>
+        <text class="dg-label" x="180" y="161">Score</text>
+        <rect class="dg-box" x="270" y="140" width="110" height="40" rx="8"/>
+        <text class="dg-label" x="325" y="161">LLM</text>
+        <rect class="dg-box" x="420" y="140" width="100" height="40" rx="8"/>
+        <text class="dg-label" x="470" y="161">Answer</text>
+        <path class="dg-arrow" d="M100,160 L128,160" marker-end="url(#arrow-navy-1)"/>
+        <path class="dg-arrow" d="M230,160 L268,160" marker-end="url(#arrow-navy-1)"/>
+        <path class="dg-arrow" d="M380,160 L418,160" marker-end="url(#arrow-navy-1)"/>
+      </svg>
+    </figure>
+  </li>
   <li>For agentic workflows, can make better decisions with more context of the larger problem, not just the current prompt
     <ul>
       <li>Using an expensive LLM as a planner and a cheaper LLM for individual tasks is a simple, hard-coded form of adding context to routing decisions</li>
     </ul>
+    <figure class="diagram">
+      <svg viewBox="0 0 880 220" role="img" aria-label="Diagram: an expensive planner LLM builds a plan, and the resulting state of plan plus history is used to route individual tasks to a cheaper LLM, with results combining into the final answer.">
+        <defs>
+          <marker id="arrow-navy-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="90" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="55" y="111">Prompt</text>
+        <rect class="dg-box" x="140" y="90" width="160" height="40" rx="8"/>
+        <text class="dg-label" x="220" y="111">Expensive planner</text>
+        <rect class="dg-box" x="340" y="90" width="160" height="40" rx="8"/>
+        <text class="dg-label" x="420" y="111">Plan + history</text>
+        <rect class="dg-box" x="560" y="30" width="170" height="40" rx="8"/>
+        <text class="dg-label" x="645" y="51">Cheap LLM: Task 1</text>
+        <rect class="dg-box" x="560" y="150" width="170" height="40" rx="8"/>
+        <text class="dg-label" x="645" y="171">Cheap LLM: Task 2</text>
+        <rect class="dg-box" x="770" y="90" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="815" y="111">Answer</text>
+        <path class="dg-arrow" d="M100,110 L138,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M300,110 L338,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M500,110 L558,50" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M500,110 L558,170" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M730,50 L768,100" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M730,170 L768,120" marker-end="url(#arrow-navy-2)"/>
+      </svg>
+    </figure>
   </li>
 </ul>
   </section>

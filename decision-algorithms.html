@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision Algorithms | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">How routing is built</span>
+    <h1>Decision Algorithms</h1>
+  </header>
+  <section class="content">
+<ul>
+  <li><strong>Difficulty:</strong> estimate how hard the prompt is (e.g. a trained classifier) and send easy ones to a cheap model, hard ones to a costly model</li>
+  <li><strong>Clustering:</strong> group prompts by similarity, then route each cluster to whichever model historically scores best on it</li>
+  <li><strong>RL:</strong> train the router with reinforcement learning, rewarding it for picking the model that balances quality and cost well</li>
+  <li><strong>Uncertainty:</strong> let a model score its own confidence, and escalate to a stronger model whenever confidence is low</li>
+  <li><strong>User preference:</strong> learn from human ratings of which model&rsquo;s answers people actually prefer, and route toward that pattern</li>
+</ul>
+<p>These are the most common building blocks &mdash; real routers often combine several.</p>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="learning-and-retraining.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">9 / 20</span>
+  <a class="nav-btn" data-dir="next" href="benchmarks.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

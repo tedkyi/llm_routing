@@ -1,0 +1,6 @@
+# Source slide decks contain speaker notes/outline not meant for the public site
+*.pptx
+
+# OS cruft
+.DS_Store
+Thumbs.db

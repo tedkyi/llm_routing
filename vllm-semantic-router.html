@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vLLM Semantic Router | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">Case study</span>
+    <h1>vLLM Semantic Router</h1>
+  </header>
+  <section class="content">
+<p>Six milestones in about 14 months &mdash; from a fixed model choice to full lifecycle management of a Mixture-of-Models system.</p>
+<figure>
+  <img src="assets/img/vllm-semantic-router-milestones.png" alt="Five-stage evolution diagram: 1. Day 0 Model Choice, 2. IRIS v0.1 Signal to Decision, 3. Athena v0.2 Inference Control, 4. Themis v0.3 Stateful Runtime, 5. MOM Model Lifecycle.">
+  <figcaption>From a fixed model choice (Day 0) to full Mixture-of-Models lifecycle management</figcaption>
+</figure>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Milestone</th><th>When</th><th>What changed</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Incubation</td><td>Apr 2025</td><td>Early semantic-routing prototypes began with Mixture-of-Models as the long-term system goal</td></tr>
+    <tr><td>Initial release</td><td>Sep 2025</td><td>Intent-aware selection between fast and reasoning paths</td></tr>
+    <tr><td>v0.1 Iris</td><td>Jan 2026</td><td>Signals, decisions, and route-scoped plugins replaced fixed classification</td></tr>
+    <tr><td>v0.2 Athena</td><td>Mar 2026</td><td>Model selection, memory, RAG, long context, and multimodality expanded routing into an inference control system</td></tr>
+    <tr><td>v0.3 Themis</td><td>Jun 2026</td><td>Stateful routing, projections, replay, protocol support, session continuity, and one production configuration contract made the system operable</td></tr>
+    <tr><td>Fusion and Micro-Agent</td><td>Jun 2026</td><td>The router began choosing collaboration patterns, not only individual models</td></tr>
+  </tbody>
+</table>
+</div>
+
+<hr class="section-divider">
+
+<p>By mid-2026 the project supports 11+ selection algorithms, from simple nearest-neighbor voting to online learning methods like Thompson sampling &mdash; illustrating how much the decision-algorithm menu from earlier in this talk has grown in practice.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Family</th><th>Method</th><th>Where it fits in the taxonomy</th><th>What it does</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ML-based</td><td>KNN</td><td>Clustering &middot; offline</td><td>Finds similar historical queries and lets nearby examples vote for the best model.</td></tr>
+    <tr><td>ML-based</td><td>KMeans</td><td>Clustering &middot; new models cheap</td><td>Clusters requests and assigns models based on cluster-level quality and efficiency patterns.</td></tr>
+    <tr><td>ML-based</td><td>SVM</td><td>Difficulty classifier &middot; offline</td><td>Learns nonlinear decision boundaries between model preferences using an RBF classifier.</td></tr>
+    <tr><td>ML-based</td><td>MLP</td><td>Difficulty classifier &middot; offline</td><td>Uses a neural router to predict the best model from embeddings, with efficient inference through Candle.</td></tr>
+    <tr><td>Advanced</td><td>Static</td><td>No routing &mdash; fixed choice</td><td>Uses a fixed default model when predictability matters more than adaptation.</td></tr>
+    <tr><td>Advanced</td><td>Latency-Aware</td><td>Metrics &mdash; latency in objective</td><td>Selects the fastest candidate from TPOT and TTFT percentile data when latency budgets dominate.</td></tr>
+    <tr><td>Advanced</td><td>Elo</td><td>User preference &middot; online</td><td>Learns from user feedback and pairwise preferences using Bradley-Terry style rating updates.</td></tr>
+    <tr><td>Advanced</td><td>RouterDC</td><td>Clustering / similarity &middot; offline</td><td>Matches queries to model descriptions with dual-contrastive embedding similarity.</td></tr>
+    <tr><td>Advanced</td><td>AutoMix</td><td>Uncertainty &middot; cascade escalation</td><td>Starts with cheaper models and escalates based on self-verification to balance cost and quality.</td></tr>
+    <tr><td>Advanced</td><td>Hybrid</td><td>Combined blocks &middot; metrics-weighted</td><td>Blends multiple methods such as quality, similarity, and cost with configurable weights.</td></tr>
+    <tr><td>Advanced</td><td>Thompson Sampling</td><td>RL (bandit) &middot; online</td><td>Balances exploration and exploitation online so routing can keep learning while serving production traffic.</td></tr>
+    <tr><td>Advanced</td><td>GMTRouter</td><td>User preference &middot; multi-turn state</td><td>Personalizes model choice from multi-turn interaction history with graph-based routing.</td></tr>
+    <tr><td>Advanced</td><td>Router-R1</td><td>RL &middot; multi-round state</td><td>Uses an external router model to reason about the request before choosing a downstream model.</td></tr>
+  </tbody>
+</table>
+</div>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="llmrouter.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">16 / 20</span>
+  <a class="nav-btn" data-dir="next" href="where-this-leaves-us.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

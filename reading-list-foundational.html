@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading List &mdash; Early / Foundational | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">Further reading</span>
+    <h1>Reading List &mdash; Early / Foundational</h1>
+  </header>
+  <section class="content">
+<div class="reading-item">
+  <p><strong>Large Language Model Routing with Benchmark Datasets</strong> (Shnitzer et al., IBM, NeurIPS 2023 workshop / COLM 2024) &mdash; reframes routing as reusing existing benchmark datasets to train a router via binary classification, without needing labeled data for the new task.</p>
+  <span class="taxonomy">Taxonomy: decision = difficulty (classifier trained on benchmark data) &middot; workflow = single choice &middot; offline learning &middot; also a benchmarks story</span>
+</div>
+<div class="reading-item">
+  <p><strong>LLM-Blender</strong> (Jiang, Ren &amp; Lin, 2023) &mdash; an ensembling/routing hybrid: pairwise ranking across candidate LLM outputs plus generative fusion of the top ones.</p>
+  <span class="taxonomy">Taxonomy: workflow = run several models in parallel and aggregate &middot; decision = user preference (pairwise ranking of outputs) &middot; offline</span>
+</div>
+<div class="reading-item">
+  <p><strong>AutoMix</strong> (Madaan et al., 2023) &mdash; few-shot self-verification: a small model answers, verifies its own confidence, and a POMDP-style policy decides whether to escalate.</p>
+  <span class="taxonomy">Taxonomy: workflow = cascade with a verifier and escalation policy &middot; decision = uncertainty (self-verification) &middot; stateless</span>
+</div>
+<div class="reading-item">
+  <p><strong>HybridLLM</strong> (Ding et al., Microsoft, ICLR 2024) &mdash; trains a DeBERTa-based router to predict query difficulty and route to the right-sized model to meet a target quality bar. Easy to test because it's a clean binary/threshold decision.</p>
+  <span class="taxonomy">Taxonomy: decision = difficulty &middot; workflow = single choice &middot; metrics = minimum cost at a target quality bar &middot; offline</span>
+</div>
+<div class="reading-item">
+  <p><strong>RouterBench: A Benchmark for Multi-LLM Routing System</strong> &mdash; addresses an important problem: how do you actually compare routers? RouterBench provides more than 405K inference outcomes from representative LLMs, a routing evaluation framework, and a theoretical formulation of the routing problem.</p>
+  <span class="taxonomy">Taxonomy: benchmarks &middot; supplies the per-model ground truth the gap-to-oracle analysis needs</span>
+</div>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="where-this-leaves-us.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">18 / 20</span>
+  <a class="nav-btn" data-dir="next" href="reading-list-recent.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

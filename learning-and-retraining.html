@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning and Retraining | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">How routing is built</span>
+    <h1>Learning and Retraining</h1>
+  </header>
+  <section class="content">
+<ul>
+  <li>Simpler is to pre-train a router and use frozen model (offline learning)</li>
+  <li>Some papers examine algorithms that learn as you use models and provide preference data (online learning)</li>
+  <li>Another dimension is what happens when new LLMs become available</li>
+  <li>Most routers need to be retrained from scratch</li>
+  <li>Some, such as ones using clustering, only require the new model to be scored. The highest scoring model for each cluster is the best.</li>
+</ul>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="statefulness.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">8 / 20</span>
+  <a class="nav-btn" data-dir="next" href="decision-algorithms.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

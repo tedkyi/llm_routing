@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where This Leaves Us | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">Wrap-up</span>
+    <h1>Where This Leaves Us</h1>
+  </header>
+  <section class="content">
+<ul>
+  <li>LLM routing has moved from a simple &ldquo;pick the cheapest model that works&rdquo; idea to a full discipline: goals, metrics, workflows, statefulness, learning, and evaluation are all now active design choices</li>
+  <li>Production systems have followed: routing now ships as infrastructure (LLMRouter) and as part of the inference stack itself (vLLM Semantic Router), not just a research idea</li>
+  <li>But the field has not solved the problem: diverse router designs converge to a similar accuracy ceiling well below the oracle, and that gap has not meaningfully closed as more approaches are tried</li>
+  <li>What&rsquo;s next: better evaluators may matter more than better routers, benchmarks need to track real production traffic, and routers need to handle new models without full retraining</li>
+</ul>
+<blockquote>
+  &ldquo;The more I look at modern routing systems, the more I am convinced that the evaluator, rather than the router, is where the real competitive advantage is accumulating&rdquo;
+  <cite>&mdash; Pratik Bhavsar</cite>
+</blockquote>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="vllm-semantic-router.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">17 / 20</span>
+  <a class="nav-btn" data-dir="next" href="reading-list-foundational.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

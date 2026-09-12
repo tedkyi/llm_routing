@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FrugalGPT | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">Case study</span>
+    <h1>FrugalGPT</h1>
+  </header>
+  <section class="content">
+<p>&ldquo;FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance&rdquo; from May 2023<br>
+<a href="https://arxiv.org/abs/2305.05176" target="_blank" rel="noopener">https://arxiv.org/abs/2305.05176</a></p>
+<p>Three strategies:</p>
+<ul>
+  <li>Prompt adaptation (reduce few-shot examples or combine queries)</li>
+  <li>LLM approximation (cache or fine-tuned smaller model)</li>
+  <li>LLM cascade</li>
+</ul>
+<figure>
+  <img src="assets/img/frugalgpt-cascade.png" alt="Diagram of an LLM cascade: a query is sent to GPT-J, then GPT-3, then GPT-4 in sequence, accepting the answer as soon as a scoring function is confident enough.">
+  <figcaption>(e) LLM cascade &mdash; escalate through GPT-J &rarr; GPT-3 &rarr; GPT-4 only as needed</figcaption>
+</figure>
+
+<hr class="section-divider">
+
+<p>FrugalGPT&rsquo;s cost-performance profile not only allowed less expensive inference, but even achieved better performance than the largest model. Results for CoQA on reading comprehension:</p>
+<figure>
+  <img src="assets/img/frugalgpt-cost-accuracy.png" alt="Scatter plot of accuracy versus cost in dollars for individual LLMs (CHATGPT, GPT-J, J1, GPT-Neo, FQ, CoHere, GPT-3, GPT-4) compared against the FrugalGPT cost-accuracy curve, which reaches higher accuracy than GPT-4 at a fraction of the cost.">
+  <figcaption>FrugalGPT&rsquo;s curve dominates every individual model on the cost/accuracy trade-off</figcaption>
+</figure>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="failure-modes.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">13 / 20</span>
+  <a class="nav-btn" data-dir="next" href="routellm.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

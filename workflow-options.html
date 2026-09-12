@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workflow Options | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">How routing is built</span>
+    <h1>Workflow Options</h1>
+  </header>
+  <section class="content">
+<ul>
+  <li>Simplest workflow is to make a prior decision, selecting which LLM</li>
+  <li>Expensive workflow step is to run multiple LLMs in parallel, when the value of a good answer is very high
+    <ul>
+      <li>Consensus voting by the same LLM (e.g. best of 5) is a form of this</li>
+    </ul>
+  </li>
+  <li>Can integrate routing decisions while generating &mdash; e.g., use low model confidence to escalate to a costlier LLM</li>
+  <li>Can pipeline a verifier/evaluator after generation to decide whether to accept response or escalate
+    <ul>
+      <li>Escalation policies can use a wide variety of techniques, but simplest is redo prompt with a costlier LLM</li>
+    </ul>
+  </li>
+</ul>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="metrics.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">6 / 20</span>
+  <a class="nav-btn" data-dir="next" href="statefulness.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

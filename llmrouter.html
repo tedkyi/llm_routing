@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLMRouter | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">Case study</span>
+    <h1>LLMRouter</h1>
+  </header>
+  <section class="content">
+<p>LLMRouter: Unified Infrastructure for Developing, Evaluating, and Deploying LLM Routers<br>
+<a href="https://arxiv.org/abs/2608.06867" target="_blank" rel="noopener">https://arxiv.org/abs/2608.06867</a></p>
+<p>LLMRouter is interesting because it combines three different goals</p>
+<ul>
+  <li>Cost efficiency</li>
+  <li>Capability matching</li>
+  <li>User preference</li>
+</ul>
+<p>...in a unified framework</p>
+<ul>
+  <li>Single-turn</li>
+  <li>Multi-turn</li>
+  <li>Personalized</li>
+</ul>
+<figure>
+  <img src="assets/img/llmrouter-unified-formulation.png" alt="Diagram of LLMRouter's unified formulation: three motivating scenarios (cost efficiency, capability matching, user preference) feed into a routing state (query, persona, history) shared across single-turn, multi-turn, and personalized routing, which is scored by a router combining a context encoder and model encoder over LLM candidates.">
+  <figcaption>LLMRouter's unified formulation across single-turn, multi-turn, and personalized routing</figcaption>
+</figure>
+
+<hr class="section-divider">
+
+<p>LLMRouter treats routing as full infrastructure, not just a scoring function: a Data Engine builds training data, a Router Trainer fits the routing model, a Route Engine scores and dispatches each request at inference time, and separate Evaluation and Deployment layers plug into existing serving stacks.</p>
+<figure>
+  <img src="assets/img/llmrouter-architecture.png" alt="Architecture diagram of LLMRouter with six modules: Data Engine, Router Library, Router Trainer, Route Engine, Evaluation, and Deployment, connected in a pipeline from data curation through training to inference and deployment.">
+  <figcaption>Figure 3: Architecture of LLMRouter &mdash; six modules covering data, training, inference, evaluation, and deployment</figcaption>
+</figure>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="routellm.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">15 / 20</span>
+  <a class="nav-btn" data-dir="next" href="vllm-semantic-router.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

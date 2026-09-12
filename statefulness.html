@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statefulness | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">How routing is built</span>
+    <h1>Statefulness</h1>
+  </header>
+  <section class="content">
+<ul>
+  <li>Early routers were stateless, simply scoring the prompt and choosing an LLM</li>
+  <li>For agentic workflows, can make better decisions with more context of the larger problem, not just the current prompt
+    <ul>
+      <li>Using an expensive LLM as a planner and a cheaper LLM for individual tasks is a simple, hard-coded form of adding context to routing decisions</li>
+    </ul>
+  </li>
+</ul>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="workflow-options.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">7 / 20</span>
+  <a class="nav-btn" data-dir="next" href="learning-and-retraining.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

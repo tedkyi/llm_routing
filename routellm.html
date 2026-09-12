@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RouteLLM | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">Case study</span>
+    <h1>RouteLLM</h1>
+  </header>
+  <section class="content">
+<p>&ldquo;RouteLLM: Learning to Route LLMs with Preference Data&rdquo; &mdash; Ong et al. (LMSYS), June 2024<br>
+<a href="https://arxiv.org/abs/2406.18665" target="_blank" rel="noopener">https://arxiv.org/abs/2406.18665</a></p>
+<ul>
+  <li>Learns a routing policy directly from human preference data (Chatbot Arena), instead of hand-tuned rules</li>
+  <li>Trained four router architectures &mdash; similarity-weighted ranking, matrix factorization, a BERT classifier, and a causal-LLM classifier &mdash; and open-sourced all of them</li>
+  <li>Cut cost by over 85% on MT-Bench, 45% on MMLU, and 35% on GSM8K versus always calling GPT-4, while keeping about 95% of GPT-4&rsquo;s quality</li>
+  <li>One of the first routers released with reusable benchmarks and trained models &mdash; it became a common baseline for the work that followed</li>
+</ul>
+  </section>
+</main>
+<nav class="slide-nav">
+  <a class="nav-btn" data-dir="prev" href="frugalgpt.html">&larr; <span class="label">Previous</span></a>
+  <span class="nav-counter">14 / 20</span>
+  <a class="nav-btn" data-dir="next" href="llmrouter.html"><span class="label">Next</span> &rarr;</a>
+</nav>
+<script src="assets/nav.js"></script>
+</body>
+</html>

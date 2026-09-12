@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Workflow Options | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=10">
+<link rel="stylesheet" href="assets/style.css?v=11">
 </head>
 <body>
 <div class="topbar">
@@ -90,7 +90,7 @@
       <li>Consensus voting by the same LLM (e.g. best of 5) is a form of this</li>
     </ul>
     <figure class="diagram">
-      <svg viewBox="0 0 760 220" width="760" height="220" role="img" aria-label="Diagram: a prompt fans out to three LLM runs in parallel, which converge into an aggregate or vote step, producing the answer.">
+      <svg viewBox="0 0 930 220" width="930" height="220" role="img" aria-label="Diagram: a prompt goes to a router, which sends it to all three LLM runs in parallel, which converge into an aggregate or vote step, producing the answer.">
         <defs>
           <marker id="arrow-navy-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -98,23 +98,26 @@
         </defs>
         <rect class="dg-box" x="10" y="88" width="100" height="44" rx="8"/>
         <text class="dg-label" x="60" y="111">Prompt</text>
-        <rect class="dg-box" x="190" y="15" width="150" height="40" rx="8"/>
-        <text class="dg-label" x="265" y="36">LLM run 1</text>
-        <rect class="dg-box" x="190" y="90" width="150" height="40" rx="8"/>
-        <text class="dg-label" x="265" y="111">LLM run 2</text>
-        <rect class="dg-box" x="190" y="165" width="150" height="40" rx="8"/>
-        <text class="dg-label" x="265" y="186">LLM run 3</text>
-        <rect class="dg-box-chosen" x="430" y="90" width="170" height="40" rx="8"/>
-        <text class="dg-label-chosen" x="515" y="111">Aggregate / Vote</text>
-        <rect class="dg-box" x="660" y="90" width="90" height="40" rx="8"/>
-        <text class="dg-label" x="705" y="111">Answer</text>
-        <path class="dg-arrow" d="M110,102 L188,38" marker-end="url(#arrow-navy-2)"/>
-        <path class="dg-arrow" d="M110,110 L188,110" marker-end="url(#arrow-navy-2)"/>
-        <path class="dg-arrow" d="M110,118 L188,183" marker-end="url(#arrow-navy-2)"/>
-        <path class="dg-arrow" d="M340,38 L428,95" marker-end="url(#arrow-navy-2)"/>
-        <path class="dg-arrow" d="M340,110 L428,110" marker-end="url(#arrow-navy-2)"/>
-        <path class="dg-arrow" d="M340,183 L428,124" marker-end="url(#arrow-navy-2)"/>
-        <path class="dg-arrow" d="M600,110 L658,110" marker-end="url(#arrow-navy-2)"/>
+        <polygon class="dg-diamond" points="230,72 285,110 230,148 175,110"/>
+        <text class="dg-label" x="230" y="111">Router</text>
+        <rect class="dg-box" x="350" y="15" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="425" y="36">LLM run 1</text>
+        <rect class="dg-box" x="350" y="90" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="425" y="111">LLM run 2</text>
+        <rect class="dg-box" x="350" y="165" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="425" y="186">LLM run 3</text>
+        <rect class="dg-box-chosen" x="590" y="90" width="170" height="40" rx="8"/>
+        <text class="dg-label-chosen" x="675" y="111">Aggregate / Vote</text>
+        <rect class="dg-box" x="820" y="90" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="865" y="111">Answer</text>
+        <path class="dg-arrow" d="M110,110 L173,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M285,110 L348,38" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M285,110 L348,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M285,110 L348,183" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M500,38 L588,95" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M500,110 L588,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M500,183 L588,124" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M760,110 L818,110" marker-end="url(#arrow-navy-2)"/>
       </svg>
     </figure>
   </li>
@@ -190,6 +193,6 @@
 </ul>
   </section>
 </main>
-<script src="assets/nav.js?v=10"></script>
+<script src="assets/nav.js?v=11"></script>
 </body>
 </html>

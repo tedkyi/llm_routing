@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Learning | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=10">
+<link rel="stylesheet" href="assets/style.css?v=11">
 </head>
 <body>
 <div class="topbar">
@@ -56,7 +56,7 @@
 <ul>
   <li>Simpler is to pre-train a router and use frozen model (offline learning)
     <figure class="diagram">
-      <svg viewBox="0 0 800 220" width="800" height="220" role="img" aria-label="Diagram: training data trains a router once, offline; that trained router is then copied as a frozen snapshot, which is what actually handles every incoming prompt.">
+      <svg viewBox="0 0 800 230" width="800" height="230" role="img" aria-label="Diagram: training data trains a router once, offline; that trained router is then copied as a frozen snapshot, which is what actually handles every incoming prompt.">
         <defs>
           <marker id="arrow-navy-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -64,20 +64,20 @@
         </defs>
         <rect class="dg-box" x="10" y="20" width="140" height="38" rx="8"/>
         <text class="dg-label" x="80" y="40">Training data</text>
-        <rect class="dg-box" x="190" y="20" width="150" height="38" rx="8"/>
+        <polygon class="dg-diamond" points="265,7 340,39 265,71 190,39"/>
         <text class="dg-label" x="265" y="40">Router (training)</text>
         <path class="dg-arrow" d="M150,39 L188,39" marker-end="url(#arrow-navy-1)"/>
         <rect class="dg-box" x="10" y="140" width="110" height="40" rx="8"/>
         <text class="dg-label" x="65" y="161">Prompt</text>
-        <rect class="dg-box-chosen" x="260" y="140" width="170" height="40" rx="8"/>
+        <polygon class="dg-diamond-chosen" points="345,122 430,160 345,198 260,160"/>
         <text class="dg-label-chosen" x="345" y="161">Frozen router</text>
         <rect class="dg-box" x="470" y="140" width="140" height="40" rx="8"/>
         <text class="dg-label" x="540" y="161">Decision</text>
         <path class="dg-arrow" d="M120,160 L258,160" marker-end="url(#arrow-navy-1)"/>
         <path class="dg-arrow" d="M430,160 L468,160" marker-end="url(#arrow-navy-1)"/>
-        <path class="dg-arrow" d="M265,58 C265,100 345,100 345,138" marker-end="url(#arrow-navy-1)"/>
-        <text class="dg-caption" x="305" y="94">copy (freeze)</text>
-        <text class="dg-label-alt" x="345" y="200">(unchanged after copying)</text>
+        <path class="dg-arrow" d="M265,71 C265,105 345,105 345,120" marker-end="url(#arrow-navy-1)"/>
+        <text class="dg-caption" x="305" y="98">copy (freeze)</text>
+        <text class="dg-label-alt" x="345" y="216">(unchanged after copying)</text>
       </svg>
     </figure>
   </li>
@@ -91,7 +91,7 @@
         </defs>
         <rect class="dg-box" x="10" y="90" width="110" height="40" rx="8"/>
         <text class="dg-label" x="65" y="111">Prompt</text>
-        <rect class="dg-box-chosen" x="170" y="90" width="140" height="40" rx="8"/>
+        <polygon class="dg-diamond-chosen" points="240,78 310,110 240,142 170,110"/>
         <text class="dg-label-chosen" x="240" y="111">Router</text>
         <rect class="dg-box" x="350" y="90" width="110" height="40" rx="8"/>
         <text class="dg-label" x="405" y="111">LLM</text>
@@ -100,7 +100,7 @@
         <path class="dg-arrow" d="M120,110 L168,110" marker-end="url(#arrow-navy-2)"/>
         <path class="dg-arrow" d="M310,110 L348,110" marker-end="url(#arrow-navy-2)"/>
         <path class="dg-arrow" d="M460,110 L498,110" marker-end="url(#arrow-navy-2)"/>
-        <path class="dg-arrow" d="M575,88 C575,20 240,20 240,88" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M575,88 C575,20 240,20 240,80" marker-end="url(#arrow-navy-2)"/>
         <text class="dg-caption" x="405" y="25">update router</text>
       </svg>
     </figure>
@@ -108,6 +108,6 @@
 </ul>
   </section>
 </main>
-<script src="assets/nav.js?v=10"></script>
+<script src="assets/nav.js?v=11"></script>
 </body>
 </html>

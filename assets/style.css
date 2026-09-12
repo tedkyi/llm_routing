@@ -281,6 +281,12 @@ figure.diagram figcaption {
   stroke-width: 2;
 }
 
+.dg-diamond-chosen {
+  fill: #6b5b95;
+  stroke: #6b5b95;
+  stroke-width: 2;
+}
+
 /* Shape vocabulary: diamond = router/decision, circle = a model/LLM,
    rounded rectangle = everything else that flows through the system. */
 .dg-circle {

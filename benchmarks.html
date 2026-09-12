@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Benchmarks | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=11">
+<link rel="stylesheet" href="assets/style.css?v=13">
 </head>
 <body>
 <div class="topbar">
@@ -56,12 +56,12 @@
 <ul>
   <li>Comparing routers requires a dataset of prompts with the ground-truth performance of every candidate model on each prompt</li>
   <li>Early routing papers borrowed general LLM benchmarks &mdash; MT-Bench, MMLU, GSM8K &mdash; as a stand-in for routing quality</li>
-  <li>Purpose-built router benchmarks followed, scoring many models against many prompts so routers can be compared apples-to-apples (e.g. RouterBench, LLMRouterBench)</li>
+  <li>Purpose-built router benchmarks followed, scoring many models against many prompts so routers can be compared apples-to-apples (e.g. <a href="https://arxiv.org/abs/2403.12031" target="_blank" rel="noopener">RouterBench</a>, <a href="https://arxiv.org/abs/2601.07206" target="_blank" rel="noopener">LLMRouterBench</a>)</li>
   <li>Still unresolved: benchmarks are a fixed snapshot, but the model lineup keeps changing and a benchmark&rsquo;s prompt mix rarely matches a given production workload</li>
   <li>This gap between benchmark results and real deployments is a big reason the &ldquo;gap to oracle&rdquo; problem (next section) persists</li>
 </ul>
   </section>
 </main>
-<script src="assets/nav.js?v=11"></script>
+<script src="assets/nav.js?v=13"></script>
 </body>
 </html>

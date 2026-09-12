@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reading List — More Recent | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=11">
+<link rel="stylesheet" href="assets/style.css?v=13">
 </head>
 <body>
 <div class="topbar">
@@ -54,39 +54,39 @@
   </header>
   <section class="content">
 <div class="reading-item">
-  <p><strong>Zooter</strong> (Lu et al., 2024, NAACL) &mdash; distills a reward model's judgments into a lightweight routing policy (&ldquo;routing to the expert&rdquo; via reward-guided ensembling).</p>
+  <p><strong><a href="https://arxiv.org/abs/2311.08692" target="_blank" rel="noopener">Zooter</a></strong> (Lu et al., 2024, NAACL) &mdash; distills a reward model's judgments into a lightweight routing policy (&ldquo;routing to the expert&rdquo; via reward-guided ensembling).</p>
   <span class="taxonomy">Taxonomy: decision = user preference (reward model distilled into the router) &middot; workflow = single choice &middot; offline</span>
 </div>
 <div class="reading-item">
-  <p><strong>GraphRouter</strong> (Feng, Shen &amp; You, ICLR 2025) &mdash; models routing as a graph problem over queries, tasks, and LLMs.</p>
+  <p><strong><a href="https://arxiv.org/abs/2410.03834" target="_blank" rel="noopener">GraphRouter</a></strong> (Feng, Shen &amp; You, ICLR 2025) &mdash; models routing as a graph problem over queries, tasks, and LLMs.</p>
   <span class="taxonomy">Taxonomy: decision = clustering / similarity, as a graph over queries, tasks and models &middot; adds new models without full retraining</span>
 </div>
 <div class="reading-item">
-  <p><strong>Cascade Routing</strong> (Dekoninck et al., 2025) &mdash; unifies routing and cascading into one framework, letting the system skip/reorder models dynamically rather than committing to one model or a fixed cascade order.</p>
+  <p><strong><a href="https://arxiv.org/abs/2410.10347" target="_blank" rel="noopener">Cascade Routing</a></strong> (Dekoninck et al., 2025) &mdash; unifies routing and cascading into one framework, letting the system skip/reorder models dynamically rather than committing to one model or a fixed cascade order.</p>
   <span class="taxonomy">Taxonomy: workflow = cascade and single choice unified &middot; metrics = best quality under a cost budget</span>
 </div>
 <div class="reading-item">
-  <p><strong>RouterEval</strong> (Huang et al., 2025) &mdash; a very large-scale benchmark (8,500+ LLMs, 200M+ performance records) used to study a &ldquo;model-level scaling&rdquo; effect: better routers keep improving as you add more candidate models to the pool.</p>
+  <p><strong><a href="https://arxiv.org/abs/2503.10657" target="_blank" rel="noopener">RouterEval</a></strong> (Huang et al., 2025) &mdash; a very large-scale benchmark (8,500+ LLMs, 200M+ performance records) used to study a &ldquo;model-level scaling&rdquo; effect: better routers keep improving as you add more candidate models to the pool.</p>
   <span class="taxonomy">Taxonomy: benchmarks &middot; gap to oracle, and how it moves as the candidate pool grows</span>
 </div>
 <div class="reading-item">
-  <p><strong>UniRoute</strong> (Jitkrittum et al., 2026) &mdash; addresses the harder practical case of routing to LLMs that weren't available at training time, using feature vectors derived from model behavior.</p>
+  <p><strong><a href="https://arxiv.org/abs/2502.08773" target="_blank" rel="noopener">UniRoute</a></strong> (Jitkrittum et al., 2026) &mdash; addresses the harder practical case of routing to LLMs that weren't available at training time, using feature vectors derived from model behavior.</p>
   <span class="taxonomy">Taxonomy: learning and retraining = models unseen at training time &middot; decision = capability / difficulty features</span>
 </div>
 <div class="reading-item">
-  <p><strong>RouterDC: Query-Based Router by Dual Contrastive Learning for Assembling Large Language Models</strong> &mdash; moves toward multi-model routing rather than simply strong-vs-weak routing. The key problem they identify is that multiple LLMs may all be good for a particular query. RouterDC uses an encoder plus LLM representations and trains with dual contrastive learning, reporting improvements over existing routing methods on both in-distribution and OOD tasks.</p>
+  <p><strong><a href="https://arxiv.org/abs/2409.19886" target="_blank" rel="noopener">RouterDC: Query-Based Router by Dual Contrastive Learning for Assembling Large Language Models</a></strong> &mdash; moves toward multi-model routing rather than simply strong-vs-weak routing. The key problem they identify is that multiple LLMs may all be good for a particular query. RouterDC uses an encoder plus LLM representations and trains with dual contrastive learning, reporting improvements over existing routing methods on both in-distribution and OOD tasks.</p>
   <span class="taxonomy">Taxonomy: decision = clustering / similarity (contrastive embeddings) &middot; workflow = single choice from many peers, not strong-vs-weak &middot; offline</span>
 </div>
 <div class="reading-item">
-  <p><strong>IRT-Router: Effective and Interpretable Multi-LLM Routing via Item Response Theory</strong> &mdash; one of the more interesting recent methodological directions. Instead of treating the router as a generic classifier, they borrow Item Response Theory from psychometrics to explicitly model LLM capability, query characteristics and difficulty, and expected model performance. They evaluate on 20 LLMs and 12 datasets, emphasizing both performance and interpretability.</p>
+  <p><strong><a href="https://arxiv.org/abs/2506.01048" target="_blank" rel="noopener">IRT-Router: Effective and Interpretable Multi-LLM Routing via Item Response Theory</a></strong> &mdash; one of the more interesting recent methodological directions. Instead of treating the router as a generic classifier, they borrow Item Response Theory from psychometrics to explicitly model LLM capability, query characteristics and difficulty, and expected model performance. They evaluate on 20 LLMs and 12 datasets, emphasizing both performance and interpretability.</p>
   <span class="taxonomy">Taxonomy: decision = difficulty, modeled explicitly as model capability &times; query difficulty &middot; offline &middot; interpretability</span>
 </div>
 <div class="reading-item">
-  <p><strong>Pandora&rsquo;s AI Model Router</strong> (DeepMind) &mdash; <a href="https://arxiv.org/abs/2608.20316" target="_blank" rel="noopener">arxiv.org/abs/2608.20316</a>. Cheap estimators (e.g., embedding-based predictors) are fast but noisy, while accurate estimators (e.g., fine-tuned models with access to retrieval results or partial reasoning traces) are expensive. They formalize this tradeoff as an instance of Pandora&rsquo;s Box, the classical problem of optimal search with costly inspection. Under a Gaussian signal model, the resulting policies have closed-form value-of-information expressions that determine, for each specialist and input, whether refining the value estimate is worth its cost &mdash; the centralized policy is &ldquo;Pandora&rsquo;s Router,&rdquo; extended to a decentralized setting, &ldquo;Pandora&rsquo;s Bidder,&rdquo; where specialists independently decide whether to invest in self-assessment before accepting an offered price to claim a query.</p>
+  <p><strong><a href="https://arxiv.org/abs/2608.20316" target="_blank" rel="noopener">Pandora&rsquo;s AI Model Router</a></strong> (DeepMind) &mdash; Cheap estimators (e.g., embedding-based predictors) are fast but noisy, while accurate estimators (e.g., fine-tuned models with access to retrieval results or partial reasoning traces) are expensive. They formalize this tradeoff as an instance of Pandora&rsquo;s Box, the classical problem of optimal search with costly inspection. Under a Gaussian signal model, the resulting policies have closed-form value-of-information expressions that determine, for each specialist and input, whether refining the value estimate is worth its cost &mdash; the centralized policy is &ldquo;Pandora&rsquo;s Router,&rdquo; extended to a decentralized setting, &ldquo;Pandora&rsquo;s Bidder,&rdquo; where specialists independently decide whether to invest in self-assessment before accepting an offered price to claim a query.</p>
   <span class="taxonomy">Taxonomy: metrics = value of information against the cost of estimating it &middot; workflow = verifier / escalation with costly inspection &middot; decision = uncertainty</span>
 </div>
   </section>
 </main>
-<script src="assets/nav.js?v=11"></script>
+<script src="assets/nav.js?v=13"></script>
 </body>
 </html>

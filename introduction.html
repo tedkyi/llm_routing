@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Introduction | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=11">
+<link rel="stylesheet" href="assets/style.css?v=13">
 </head>
 <body>
 <div class="topbar">
@@ -53,6 +53,35 @@
     <h1>Introduction</h1>
   </header>
   <section class="content">
+<figure class="diagram">
+  <svg viewBox="0 0 720 200" width="720" height="200" role="img" aria-label="Diagram: a prompt goes to a router, which picks one LLM out of several and sends the prompt to it, producing the answer.">
+    <defs>
+      <marker id="arrow-navy-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+      </marker>
+      <marker id="arrow-gray-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#b0b8bc"/>
+      </marker>
+    </defs>
+    <rect class="dg-box" x="10" y="78" width="100" height="44" rx="8"/>
+    <text class="dg-label" x="60" y="101">Prompt</text>
+    <polygon class="dg-diamond" points="195,60 250,100 195,140 140,100"/>
+    <text class="dg-label" x="195" y="101">Router</text>
+    <rect class="dg-box-alt" x="320" y="15" width="150" height="40" rx="8"/>
+    <text class="dg-label-alt" x="395" y="36">Small LLM</text>
+    <rect class="dg-box-chosen" x="320" y="80" width="150" height="40" rx="8"/>
+    <text class="dg-label-chosen" x="395" y="101">Medium LLM</text>
+    <rect class="dg-box-alt" x="320" y="145" width="150" height="40" rx="8"/>
+    <text class="dg-label-alt" x="395" y="166">Large LLM</text>
+    <rect class="dg-box" x="590" y="78" width="100" height="44" rx="8"/>
+    <text class="dg-label" x="640" y="101">Answer</text>
+    <path class="dg-arrow-alt" d="M250,100 L318,38" marker-end="url(#arrow-gray-1)"/>
+    <path class="dg-arrow" d="M250,100 L316,100" marker-end="url(#arrow-navy-1)"/>
+    <path class="dg-arrow-alt" d="M250,100 L318,163" marker-end="url(#arrow-gray-1)"/>
+    <path class="dg-arrow" d="M110,100 L136,100" marker-end="url(#arrow-navy-1)"/>
+    <path class="dg-arrow" d="M470,100 L586,100" marker-end="url(#arrow-navy-1)"/>
+  </svg>
+</figure>
 <ul>
   <li>Problem statement: given a choice of multiple LLMs with different capabilities and costs, route my prompt to the best LLM</li>
   <li>As people started using LLMs more widely and paying for inference, smarter choices of models became attractive</li>
@@ -62,6 +91,6 @@
 </ul>
   </section>
 </main>
-<script src="assets/nav.js?v=11"></script>
+<script src="assets/nav.js?v=13"></script>
 </body>
 </html>

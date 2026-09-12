@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>vLLM Semantic Router | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=11">
+<link rel="stylesheet" href="assets/style.css?v=13">
 </head>
 <body>
 <div class="topbar">
@@ -53,10 +53,9 @@
     <h1>vLLM Semantic Router</h1>
   </header>
   <section class="content">
-<p>Six milestones in about 14 months &mdash; from a fixed model choice to full lifecycle management of a Mixture-of-Models system.</p>
+<p>Six milestones in about 14 months from April 2025 to June 2026. This product rapidly evolved from a fixed model choice to full lifecycle management of a Mixture-of-Models system. See the vLLM Blog post, &ldquo;<a href="https://vllm.ai/blog/2026-07-21-vllm-sr-new-chapter-mom" target="_blank" rel="noopener">Beyond a Single Model: Building Mixture-of-Models Systems with vLLM Semantic Router</a>&rdquo; (2026).</p>
 <figure>
   <img src="assets/img/vllm-semantic-router-milestones.png" alt="Five-stage evolution diagram: 1. Day 0 Model Choice, 2. IRIS v0.1 Signal to Decision, 3. Athena v0.2 Inference Control, 4. Themis v0.3 Stateful Runtime, 5. MOM Model Lifecycle.">
-  <figcaption>From a fixed model choice (Day 0) to full Mixture-of-Models lifecycle management</figcaption>
 </figure>
 
 <div class="table-wrap">
@@ -92,17 +91,17 @@
     <tr><td>Advanced</td><td>Static</td><td>No routing &mdash; fixed choice</td><td>Uses a fixed default model when predictability matters more than adaptation.</td></tr>
     <tr><td>Advanced</td><td>Latency-Aware</td><td>Metrics &mdash; latency in objective</td><td>Selects the fastest candidate from TPOT and TTFT percentile data when latency budgets dominate.</td></tr>
     <tr><td>Advanced</td><td>Elo</td><td>User preference &middot; online</td><td>Learns from user feedback and pairwise preferences using Bradley-Terry style rating updates.</td></tr>
-    <tr><td>Advanced</td><td>RouterDC</td><td>Clustering / similarity &middot; offline</td><td>Matches queries to model descriptions with dual-contrastive embedding similarity.</td></tr>
-    <tr><td>Advanced</td><td>AutoMix</td><td>Uncertainty &middot; cascade escalation</td><td>Starts with cheaper models and escalates based on self-verification to balance cost and quality.</td></tr>
+    <tr><td>Advanced</td><td><a href="https://arxiv.org/abs/2409.19886" target="_blank" rel="noopener">RouterDC</a></td><td>Clustering / similarity &middot; offline</td><td>Matches queries to model descriptions with dual-contrastive embedding similarity.</td></tr>
+    <tr><td>Advanced</td><td><a href="https://arxiv.org/abs/2310.12963" target="_blank" rel="noopener">AutoMix</a></td><td>Uncertainty &middot; cascade escalation</td><td>Starts with cheaper models and escalates based on self-verification to balance cost and quality.</td></tr>
     <tr><td>Advanced</td><td>Hybrid</td><td>Combined blocks &middot; metrics-weighted</td><td>Blends multiple methods such as quality, similarity, and cost with configurable weights.</td></tr>
     <tr><td>Advanced</td><td>Thompson Sampling</td><td>RL (bandit) &middot; online</td><td>Balances exploration and exploitation online so routing can keep learning while serving production traffic.</td></tr>
-    <tr><td>Advanced</td><td>GMTRouter</td><td>User preference &middot; multi-turn state</td><td>Personalizes model choice from multi-turn interaction history with graph-based routing.</td></tr>
-    <tr><td>Advanced</td><td>Router-R1</td><td>RL &middot; multi-round state</td><td>Uses an external router model to reason about the request before choosing a downstream model.</td></tr>
+    <tr><td>Advanced</td><td><a href="https://arxiv.org/abs/2511.08590" target="_blank" rel="noopener">GMTRouter</a></td><td>User preference &middot; multi-turn state</td><td>Personalizes model choice from multi-turn interaction history with graph-based routing.</td></tr>
+    <tr><td>Advanced</td><td><a href="https://arxiv.org/abs/2506.09033" target="_blank" rel="noopener">Router-R1</a></td><td>RL &middot; multi-round state</td><td>Uses an external router model to reason about the request before choosing a downstream model.</td></tr>
   </tbody>
 </table>
 </div>
   </section>
 </main>
-<script src="assets/nav.js?v=11"></script>
+<script src="assets/nav.js?v=13"></script>
 </body>
 </html>

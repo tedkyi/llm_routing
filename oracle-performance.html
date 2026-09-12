@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oracle Performance | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=11">
+<link rel="stylesheet" href="assets/style.css?v=13">
 </head>
 <body>
 <div class="topbar">
@@ -54,8 +54,8 @@
   </header>
   <section class="content">
 <ul>
-  <li>Several benchmarks score every prompt on every model in the pool, then report the oracle ceiling &mdash; the accuracy you would reach if you always picked the right model: RouterBench, LLMRouterBench (Li et al., 2026), RouterArena (ICLR 2026)</li>
-  <li>The Routing Plateau: Understanding and Breaking the Accuracy Limits of LLM Routers (Lu et al., 2026) &mdash; 21 routing methods across five benchmarks &mdash; <a href="https://arxiv.org/abs/2606.07587" target="_blank" rel="noopener">arxiv.org/abs/2606.07587</a>
+  <li>Several benchmarks score every prompt on every model in the pool, then report the oracle ceiling &mdash; the accuracy you would reach if you always picked the right model: <a href="https://arxiv.org/abs/2403.12031" target="_blank" rel="noopener">RouterBench</a> (Hu et al., 2024), <a href="https://arxiv.org/abs/2601.07206" target="_blank" rel="noopener">LLMRouterBench</a> (Li et al., 2026), <a href="https://arxiv.org/abs/2510.00202" target="_blank" rel="noopener">RouterArena</a> (Lu et al., ICLR 2026)</li>
+  <li>&ldquo;<a href="https://arxiv.org/abs/2606.07587" target="_blank" rel="noopener">The Routing Plateau: Understanding and Breaking the Accuracy Limits of LLM Routers</a>&rdquo; (Lu et al., 2026) &mdash; 21 routing methods across five benchmarks
     <ul>
       <li>On RouterBench the top 15 routers differ by 0.23 percentage points &mdash; diverse designs, one shared ceiling</li>
       <li>Plain kNN ranks in the top 2 on all five benchmarks</li>
@@ -63,11 +63,10 @@
       <li>Best remedy so far: 10&times; more training data, a stronger encoder, and end-to-end fine-tuning together add 2.13 pp and close 14.6% of the gap</li>
     </ul>
   </li>
-  <li>LLMRouterBench (400K+ instances, 21 datasets, 33 models): the best routers land a few points above the best single model, while the oracle sits roughly 20 points above the best router</li>
-  <li>Caveat worth stating out loud: about 36% of the reported router-to-oracle gap is single-draw label noise under stochastic decoding, which no single-commit router can capture (<a href="https://arxiv.org/abs/2607.03436" target="_blank" rel="noopener">arXiv 2607.03436</a>)</li>
+  <li><a href="https://arxiv.org/abs/2601.07206" target="_blank" rel="noopener">LLMRouterBench</a> (400K+ instances, 21 datasets, 33 models): the best routers land a few points above the best single model, while the oracle sits roughly 20 points above the best router</li>
 </ul>
   </section>
 </main>
-<script src="assets/nav.js?v=11"></script>
+<script src="assets/nav.js?v=13"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Decision Algorithms | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="stylesheet" href="assets/style.css?v=9">
 </head>
 <body>
 <div class="topbar">
@@ -55,7 +55,7 @@
 <ul>
   <li><strong>Difficulty:</strong> estimate how hard the prompt is (e.g. a trained classifier) and send easy ones to a cheap model, hard ones to a costly model
     <figure class="diagram">
-      <svg viewBox="0 0 640 180" role="img" aria-label="Diagram: a prompt goes through a difficulty classifier; easy prompts route to a cheap model, hard prompts route to a costly model.">
+      <svg viewBox="0 0 640 180" width="640" height="180" role="img" aria-label="Diagram: a prompt goes through a difficulty classifier; easy prompts route to a cheap model, hard prompts route to a costly model.">
         <defs>
           <marker id="arrow-navy-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -82,7 +82,7 @@
   </li>
   <li><strong>Clustering:</strong> group prompts by similarity, then route each cluster to whichever model historically scores best on it
     <figure class="diagram">
-      <svg viewBox="0 0 660 180" role="img" aria-label="Diagram: a new prompt is matched to its nearest cluster, and each cluster routes to the model that historically scores best for it.">
+      <svg viewBox="0 0 660 180" width="660" height="180" role="img" aria-label="Diagram: a new prompt is matched to its nearest cluster, and each cluster routes to the model that historically scores best for it.">
         <defs>
           <marker id="arrow-navy-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -104,7 +104,7 @@
   </li>
   <li><strong>RL:</strong> train the router with reinforcement learning, rewarding it for picking the model that balances quality and cost well
     <figure class="diagram">
-      <svg viewBox="0 0 720 200" role="img" aria-label="Diagram: a state goes through a policy router to a chosen model, producing a reward for quality and cost, which loops back to update the policy.">
+      <svg viewBox="0 0 720 200" width="720" height="200" role="img" aria-label="Diagram: a state goes through a policy router to a chosen model, producing a reward for quality and cost, which loops back to update the policy.">
         <defs>
           <marker id="arrow-navy-3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -128,7 +128,7 @@
   </li>
   <li><strong>Uncertainty:</strong> let a model score its own confidence, and escalate to a stronger model whenever confidence is low
     <figure class="diagram">
-      <svg viewBox="0 0 780 220" role="img" aria-label="Diagram: a model produces an answer with a confidence score; if confident the answer is returned, otherwise the request escalates to a stronger model.">
+      <svg viewBox="0 0 780 220" width="780" height="220" role="img" aria-label="Diagram: a model produces an answer with a confidence score; if confident the answer is returned, otherwise the request escalates to a stronger model.">
         <defs>
           <marker id="arrow-navy-4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -159,7 +159,7 @@
   </li>
   <li><strong>User preference:</strong> learn from human ratings of which model&rsquo;s answers people actually prefer, and route toward that pattern
     <figure class="diagram">
-      <svg viewBox="0 0 760 200" role="img" aria-label="Diagram: human ratings of A versus B comparisons train the router's preference, which then routes new prompts toward the preferred model.">
+      <svg viewBox="0 0 760 200" width="760" height="200" role="img" aria-label="Diagram: human ratings of A versus B comparisons train the router's preference, which then routes new prompts toward the preferred model.">
         <defs>
           <marker id="arrow-navy-5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -184,6 +184,6 @@
 <p>These are the most common building blocks &mdash; real routers often combine several.</p>
   </section>
 </main>
-<script src="assets/nav.js?v=8"></script>
+<script src="assets/nav.js?v=9"></script>
 </body>
 </html>

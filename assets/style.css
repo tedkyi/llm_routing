@@ -229,8 +229,7 @@ figcaption {
 
 figure.diagram svg {
   display: block;
-  width: 100%;
-  max-width: 780px;
+  max-width: 100%;
   height: auto;
   border: 1px solid #d7dde1;
   border-radius: var(--radius);

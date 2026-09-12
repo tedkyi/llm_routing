@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Workflow Options | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="stylesheet" href="assets/style.css?v=9">
 </head>
 <body>
 <div class="topbar">
@@ -55,7 +55,7 @@
 <ul>
   <li>Simplest workflow is to make a prior decision, selecting which LLM
     <figure class="diagram">
-      <svg viewBox="0 0 720 200" role="img" aria-label="Diagram: a prompt goes to a router, which picks one LLM out of several and sends the prompt to it, producing the answer.">
+      <svg viewBox="0 0 720 200" width="720" height="200" role="img" aria-label="Diagram: a prompt goes to a router, which picks one LLM out of several and sends the prompt to it, producing the answer.">
         <defs>
           <marker id="arrow-navy-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -89,7 +89,7 @@
       <li>Consensus voting by the same LLM (e.g. best of 5) is a form of this</li>
     </ul>
     <figure class="diagram">
-      <svg viewBox="0 0 760 220" role="img" aria-label="Diagram: a prompt fans out to three LLM runs in parallel, which converge into an aggregate or vote step, producing the answer.">
+      <svg viewBox="0 0 760 220" width="760" height="220" role="img" aria-label="Diagram: a prompt fans out to three LLM runs in parallel, which converge into an aggregate or vote step, producing the answer.">
         <defs>
           <marker id="arrow-navy-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -119,7 +119,7 @@
   </li>
   <li>Can integrate routing decisions while generating &mdash; e.g., use low model confidence to escalate to a costlier LLM
     <figure class="diagram">
-      <svg viewBox="0 0 780 260" role="img" aria-label="Diagram: a cheap LLM generates a response while periodically checking its own confidence. If confident, it loops back and keeps generating; if not confident, it escalates to a costlier LLM. Either path ends at the answer.">
+      <svg viewBox="0 0 780 260" width="780" height="260" role="img" aria-label="Diagram: a cheap LLM generates a response while periodically checking its own confidence. If confident, it loops back and keeps generating; if not confident, it escalates to a costlier LLM. Either path ends at the answer.">
         <defs>
           <marker id="arrow-navy-3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -154,7 +154,7 @@
       <li>Escalation policies can use a wide variety of techniques, but simplest is redo prompt with a costlier LLM</li>
     </ul>
     <figure class="diagram">
-      <svg viewBox="0 0 800 220" role="img" aria-label="Diagram: an LLM produces a draft answer, a verifier checks it, and either accepts it as the final answer or escalates to a costlier LLM to redo the work.">
+      <svg viewBox="0 0 800 220" width="800" height="220" role="img" aria-label="Diagram: an LLM produces a draft answer, a verifier checks it, and either accepts it as the final answer or escalates to a costlier LLM to redo the work.">
         <defs>
           <marker id="arrow-navy-4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
@@ -189,6 +189,6 @@
 </ul>
   </section>
 </main>
-<script src="assets/nav.js?v=8"></script>
+<script src="assets/nav.js?v=9"></script>
 </body>
 </html>

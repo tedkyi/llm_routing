@@ -7,6 +7,45 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<div class="topbar">
+  <button class="icon-btn" id="menuBtn" type="button" aria-label="Open page menu" aria-haspopup="true" aria-expanded="false">&#9776;</button>
+  <div class="nav-group">
+    <a class="nav-btn" data-dir="prev" href="benchmarks.html">&larr; <span class="label">Previous</span></a>
+    <span class="nav-counter">11 / 20</span>
+    <a class="nav-btn" data-dir="next" href="failure-modes.html"><span class="label">Next</span> &rarr;</a>
+  </div>
+  <button class="icon-btn" id="fullscreenBtn" type="button" aria-label="Enter full screen">&#9974;</button>
+</div>
+<div class="toc-overlay" id="tocOverlay" hidden>
+  <div class="toc-panel" role="dialog" aria-label="All slides">
+    <div class="toc-header">
+      <h2>All Slides</h2>
+      <button class="icon-btn" id="tocClose" type="button" aria-label="Close menu">&#10005;</button>
+    </div>
+    <ol class="toc-list">
+      <li><a href="index.html"><span class="toc-num">1.</span> LLM Routing</a></li>
+      <li><a href="introduction.html"><span class="toc-num">2.</span> Introduction</a></li>
+      <li><a href="brief-history.html"><span class="toc-num">3.</span> A Brief History</a></li>
+      <li><a href="goal.html"><span class="toc-num">4.</span> Goal</a></li>
+      <li><a href="metrics.html"><span class="toc-num">5.</span> Metrics</a></li>
+      <li><a href="workflow-options.html"><span class="toc-num">6.</span> Workflow Options</a></li>
+      <li><a href="statefulness.html"><span class="toc-num">7.</span> Statefulness</a></li>
+      <li><a href="learning-and-retraining.html"><span class="toc-num">8.</span> Learning and Retraining</a></li>
+      <li><a href="decision-algorithms.html"><span class="toc-num">9.</span> Decision Algorithms</a></li>
+      <li><a href="benchmarks.html"><span class="toc-num">10.</span> Benchmarks</a></li>
+      <li><a href="oracle-performance.html" aria-current="page"><span class="toc-num">11.</span> Oracle Performance</a></li>
+      <li><a href="failure-modes.html"><span class="toc-num">12.</span> Failure Modes</a></li>
+      <li><a href="frugalgpt.html"><span class="toc-num">13.</span> FrugalGPT</a></li>
+      <li><a href="routellm.html"><span class="toc-num">14.</span> RouteLLM</a></li>
+      <li><a href="llmrouter.html"><span class="toc-num">15.</span> LLMRouter</a></li>
+      <li><a href="vllm-semantic-router.html"><span class="toc-num">16.</span> vLLM Semantic Router</a></li>
+      <li><a href="where-this-leaves-us.html"><span class="toc-num">17.</span> Where This Leaves Us</a></li>
+      <li><a href="reading-list-foundational.html"><span class="toc-num">18.</span> Reading List &mdash; Early / Foundational</a></li>
+      <li><a href="reading-list-recent.html"><span class="toc-num">19.</span> Reading List &mdash; More Recent</a></li>
+      <li><a href="references.html"><span class="toc-num">20.</span> References</a></li>
+    </ol>
+  </div>
+</div>
 <main class="slide">
   <header class="slide-header">
     <span class="eyebrow">Measuring routers</span>
@@ -28,11 +67,6 @@
 </ul>
   </section>
 </main>
-<nav class="slide-nav">
-  <a class="nav-btn" data-dir="prev" href="benchmarks.html">&larr; <span class="label">Previous</span></a>
-  <span class="nav-counter">11 / 20</span>
-  <a class="nav-btn" data-dir="next" href="failure-modes.html"><span class="label">Next</span> &rarr;</a>
-</nav>
 <script src="assets/nav.js"></script>
 </body>
 </html>

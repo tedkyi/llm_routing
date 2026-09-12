@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Workflow Options | LLM Routing</title>
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=6">
 </head>
 <body>
 <div class="topbar">
@@ -53,21 +53,145 @@
   </header>
   <section class="content">
 <ul>
-  <li>Simplest workflow is to make a prior decision, selecting which LLM</li>
+  <li>Simplest workflow is to make a prior decision, selecting which LLM
+    <figure class="diagram">
+      <svg viewBox="0 0 720 200" role="img" aria-label="Diagram: a prompt goes to a router, which picks one LLM out of several and sends the prompt to it, producing the answer.">
+        <defs>
+          <marker id="arrow-navy-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2f5496"/>
+          </marker>
+          <marker id="arrow-gray-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#b9c2d0"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="78" width="100" height="44" rx="8"/>
+        <text class="dg-label" x="60" y="101">Prompt</text>
+        <polygon class="dg-diamond" points="195,60 250,100 195,140 140,100"/>
+        <text class="dg-label" x="195" y="101">Router</text>
+        <rect class="dg-box-alt" x="320" y="15" width="150" height="40" rx="8"/>
+        <text class="dg-label-alt" x="395" y="36">Small LLM</text>
+        <rect class="dg-box-chosen" x="320" y="80" width="150" height="40" rx="8"/>
+        <text class="dg-label-chosen" x="395" y="101">Medium LLM</text>
+        <rect class="dg-box-alt" x="320" y="145" width="150" height="40" rx="8"/>
+        <text class="dg-label-alt" x="395" y="166">Large LLM</text>
+        <rect class="dg-box" x="590" y="78" width="100" height="44" rx="8"/>
+        <text class="dg-label" x="640" y="101">Answer</text>
+        <path class="dg-arrow" d="M110,100 L136,100" marker-end="url(#arrow-navy-1)"/>
+        <path class="dg-arrow-alt" d="M213,82 L318,38" marker-end="url(#arrow-gray-1)"/>
+        <path class="dg-arrow" d="M250,100 L316,100" marker-end="url(#arrow-navy-1)"/>
+        <path class="dg-arrow-alt" d="M213,118 L318,163" marker-end="url(#arrow-gray-1)"/>
+        <path class="dg-arrow" d="M470,100 L586,100" marker-end="url(#arrow-navy-1)"/>
+      </svg>
+      <figcaption>Prior decision &mdash; the router picks one LLM up front and sends the prompt straight to it.</figcaption>
+    </figure>
+  </li>
   <li>Expensive workflow step is to run multiple LLMs in parallel, when the value of a good answer is very high
     <ul>
       <li>Consensus voting by the same LLM (e.g. best of 5) is a form of this</li>
     </ul>
+    <figure class="diagram">
+      <svg viewBox="0 0 760 220" role="img" aria-label="Diagram: a prompt fans out to three LLM runs in parallel, which converge into an aggregate or vote step, producing the answer.">
+        <defs>
+          <marker id="arrow-navy-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2f5496"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="88" width="100" height="44" rx="8"/>
+        <text class="dg-label" x="60" y="111">Prompt</text>
+        <rect class="dg-box" x="190" y="15" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="265" y="36">LLM run 1</text>
+        <rect class="dg-box" x="190" y="90" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="265" y="111">LLM run 2</text>
+        <rect class="dg-box" x="190" y="165" width="150" height="40" rx="8"/>
+        <text class="dg-label" x="265" y="186">LLM run 3</text>
+        <rect class="dg-box-chosen" x="430" y="90" width="170" height="40" rx="8"/>
+        <text class="dg-label-chosen" x="515" y="111">Aggregate / Vote</text>
+        <rect class="dg-box" x="660" y="90" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="705" y="111">Answer</text>
+        <path class="dg-arrow" d="M110,102 L188,38" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M110,110 L188,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M110,118 L188,183" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M340,38 L428,95" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M340,110 L428,110" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M340,183 L428,124" marker-end="url(#arrow-navy-2)"/>
+        <path class="dg-arrow" d="M600,110 L658,110" marker-end="url(#arrow-navy-2)"/>
+      </svg>
+      <figcaption>Parallel + aggregate &mdash; run several models (or the same model multiple times, e.g. best-of-5), then vote or merge the answers.</figcaption>
+    </figure>
   </li>
-  <li>Can integrate routing decisions while generating &mdash; e.g., use low model confidence to escalate to a costlier LLM</li>
+  <li>Can integrate routing decisions while generating &mdash; e.g., use low model confidence to escalate to a costlier LLM
+    <figure class="diagram">
+      <svg viewBox="0 0 760 200" role="img" aria-label="Diagram: a cheap LLM generates a response; if it is confident the answer is returned directly, but if not confident the request escalates to a costlier LLM.">
+        <defs>
+          <marker id="arrow-navy-3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2f5496"/>
+          </marker>
+          <marker id="arrow-orange-3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#ed7d31"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="80" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="55" y="101">Prompt</text>
+        <rect class="dg-box" x="140" y="80" width="140" height="40" rx="8"/>
+        <text class="dg-label" x="210" y="101">Cheap LLM</text>
+        <polygon class="dg-diamond" points="470,62 528,100 470,138 412,100"/>
+        <text class="dg-label" x="470" y="101">Confident?</text>
+        <rect class="dg-box" x="640" y="80" width="110" height="40" rx="8"/>
+        <text class="dg-label" x="695" y="101">Answer</text>
+        <rect class="dg-box-escalate" x="390" y="6" width="160" height="38" rx="8"/>
+        <text class="dg-label" x="470" y="26">Costlier LLM</text>
+        <path class="dg-arrow" d="M100,100 L138,100" marker-end="url(#arrow-navy-3)"/>
+        <path class="dg-arrow" d="M280,100 L410,100" marker-end="url(#arrow-navy-3)"/>
+        <path class="dg-arrow" d="M528,100 L638,100" marker-end="url(#arrow-navy-3)"/>
+        <text class="dg-caption" x="583" y="90">confident</text>
+        <path class="dg-arrow-escalate" d="M470,62 L470,46" marker-end="url(#arrow-orange-3)"/>
+        <text class="dg-caption-left" x="480" y="58">low confidence</text>
+        <path class="dg-arrow-escalate" d="M550,25 C615,25 645,50 648,78" marker-end="url(#arrow-orange-3)"/>
+      </svg>
+      <figcaption>Escalate mid-generation &mdash; a low-confidence signal sends the request to a costlier LLM instead of finishing with the cheap one.</figcaption>
+    </figure>
+  </li>
   <li>Can pipeline a verifier/evaluator after generation to decide whether to accept response or escalate
     <ul>
       <li>Escalation policies can use a wide variety of techniques, but simplest is redo prompt with a costlier LLM</li>
     </ul>
+    <figure class="diagram">
+      <svg viewBox="0 0 760 220" role="img" aria-label="Diagram: an LLM produces a draft answer, a verifier checks it, and either accepts it as the final answer or escalates to a costlier LLM to redo the work.">
+        <defs>
+          <marker id="arrow-navy-4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2f5496"/>
+          </marker>
+          <marker id="arrow-orange-4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#ed7d31"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="10" y="90" width="90" height="40" rx="8"/>
+        <text class="dg-label" x="55" y="111">Prompt</text>
+        <rect class="dg-box" x="140" y="90" width="100" height="40" rx="8"/>
+        <text class="dg-label" x="190" y="111">LLM</text>
+        <rect class="dg-box" x="280" y="90" width="130" height="40" rx="8"/>
+        <text class="dg-label" x="345" y="111">Draft answer</text>
+        <polygon class="dg-diamond" points="500,65 575,110 500,155 425,110"/>
+        <text class="dg-label" x="500" y="111">Good enough?</text>
+        <rect class="dg-box" x="650" y="90" width="100" height="40" rx="8"/>
+        <text class="dg-label" x="700" y="111">Final answer</text>
+        <rect class="dg-box-escalate" x="420" y="6" width="160" height="38" rx="8"/>
+        <text class="dg-label" x="500" y="26">Costlier LLM</text>
+        <path class="dg-arrow" d="M100,110 L138,110" marker-end="url(#arrow-navy-4)"/>
+        <path class="dg-arrow" d="M240,110 L278,110" marker-end="url(#arrow-navy-4)"/>
+        <path class="dg-arrow" d="M410,110 L423,110" marker-end="url(#arrow-navy-4)"/>
+        <path class="dg-arrow" d="M575,110 L648,110" marker-end="url(#arrow-navy-4)"/>
+        <text class="dg-caption" x="612" y="100">accept</text>
+        <path class="dg-arrow-escalate" d="M500,65 L500,44" marker-end="url(#arrow-orange-4)"/>
+        <text class="dg-caption-left" x="510" y="57">escalate</text>
+        <path class="dg-arrow-escalate" d="M580,44 C630,44 660,65 665,88" marker-end="url(#arrow-orange-4)"/>
+      </svg>
+      <figcaption>Verify, then decide &mdash; a verifier/evaluator accepts the draft or escalates it to a costlier LLM and tries again.</figcaption>
+    </figure>
   </li>
 </ul>
   </section>
 </main>
-<script src="assets/nav.js?v=4"></script>
+<script src="assets/nav.js?v=6"></script>
 </body>
 </html>

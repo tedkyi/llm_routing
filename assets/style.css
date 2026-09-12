@@ -232,9 +232,9 @@ figure.diagram svg {
   width: 100%;
   max-width: 780px;
   height: auto;
-  border: 1px solid var(--rule);
+  border: 1px solid #d7dde1;
   border-radius: var(--radius);
-  background: #fbfcfe;
+  background: #f4f8f8;
   padding: 0.75rem 0;
 }
 
@@ -242,34 +242,37 @@ figure.diagram figcaption {
   text-align: left;
 }
 
+/* Diagram palette is deliberately distinct from the page's navy/orange
+   theme (teal + purple + red) so diagrams read as a separate visual
+   layer from the surrounding prose. */
 .dg-box {
   fill: #fff;
-  stroke: #2f5496;
+  stroke: #2b6f77;
   stroke-width: 2;
 }
 
 .dg-box-chosen {
-  fill: #2f5496;
-  stroke: #2f5496;
+  fill: #2b6f77;
+  stroke: #2b6f77;
   stroke-width: 2;
 }
 
 .dg-box-alt {
   fill: #fff;
-  stroke: #b9c2d0;
+  stroke: #b0b8bc;
   stroke-width: 1.5;
   stroke-dasharray: 4 3;
 }
 
 .dg-box-escalate {
   fill: #fff;
-  stroke: #ed7d31;
+  stroke: #c0392b;
   stroke-width: 2;
 }
 
 .dg-diamond {
   fill: #fff;
-  stroke: #4472c4;
+  stroke: #6b5b95;
   stroke-width: 2;
 }
 
@@ -293,7 +296,7 @@ figure.diagram figcaption {
 .dg-label-alt {
   font-family: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
-  fill: #8b93a1;
+  fill: #93999d;
   text-anchor: middle;
   dominant-baseline: middle;
 }
@@ -313,20 +316,20 @@ figure.diagram figcaption {
 }
 
 .dg-arrow {
-  stroke: #2f5496;
+  stroke: #2b6f77;
   stroke-width: 2;
   fill: none;
 }
 
 .dg-arrow-alt {
-  stroke: #b9c2d0;
+  stroke: #b0b8bc;
   stroke-width: 1.5;
   stroke-dasharray: 4 3;
   fill: none;
 }
 
 .dg-arrow-escalate {
-  stroke: #ed7d31;
+  stroke: #c0392b;
   stroke-width: 2;
   fill: none;
 }

@@ -275,6 +275,40 @@ figure.diagram figcaption {
   stroke-width: 2;
 }
 
+.dg-diamond-escalate {
+  fill: #fff;
+  stroke: #c0392b;
+  stroke-width: 2;
+}
+
+/* Shape vocabulary: diamond = router/decision, circle = a model/LLM,
+   rounded rectangle = everything else that flows through the system. */
+.dg-circle {
+  fill: #fff;
+  stroke: #2b6f77;
+  stroke-width: 2;
+}
+
+.dg-circle-chosen {
+  fill: #2b6f77;
+  stroke: #2b6f77;
+  stroke-width: 2;
+}
+
+.dg-circle-alt {
+  fill: #fff;
+  stroke: #b0b8bc;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.dg-container {
+  fill: rgba(43, 111, 119, 0.05);
+  stroke: #b0b8bc;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
 .dg-label {
   font-family: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
   font-size: 15px;

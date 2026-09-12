@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retraining | LLM Routing</title>
+<link rel="stylesheet" href="assets/style.css?v=10">
+</head>
+<body>
+<div class="topbar">
+  <button class="icon-btn" id="menuBtn" type="button" aria-label="Open page menu" aria-haspopup="true" aria-expanded="false">&#9776;</button>
+  <div class="nav-group">
+    <a class="nav-btn" data-dir="prev" href="learning.html">&larr; <span class="label">Previous</span></a>
+    <span class="nav-counter">9 / 21</span>
+    <a class="nav-btn" data-dir="next" href="decision-algorithms.html"><span class="label">Next</span> &rarr;</a>
+  </div>
+  <button class="icon-btn" id="fullscreenBtn" type="button" aria-label="Enter full screen">&#9974;</button>
+</div>
+<div class="toc-overlay" id="tocOverlay" hidden>
+  <div class="toc-panel" role="dialog" aria-label="All slides">
+    <div class="toc-header">
+      <h2>All Slides</h2>
+      <button class="icon-btn" id="tocClose" type="button" aria-label="Close menu">&#10005;</button>
+    </div>
+    <ol class="toc-list">
+      <li><a href="index.html"><span class="toc-num">1.</span> LLM Routing</a></li>
+      <li><a href="introduction.html"><span class="toc-num">2.</span> Introduction</a></li>
+      <li><a href="brief-history.html"><span class="toc-num">3.</span> A Brief History</a></li>
+      <li><a href="goal.html"><span class="toc-num">4.</span> Goal</a></li>
+      <li><a href="metrics.html"><span class="toc-num">5.</span> Metrics</a></li>
+      <li><a href="workflow-options.html"><span class="toc-num">6.</span> Workflow Options</a></li>
+      <li><a href="statefulness.html"><span class="toc-num">7.</span> Statefulness</a></li>
+      <li><a href="learning.html"><span class="toc-num">8.</span> Learning</a></li>
+      <li><a href="retraining.html" aria-current="page"><span class="toc-num">9.</span> Retraining</a></li>
+      <li><a href="decision-algorithms.html"><span class="toc-num">10.</span> Decision Algorithms</a></li>
+      <li><a href="benchmarks.html"><span class="toc-num">11.</span> Benchmarks</a></li>
+      <li><a href="oracle-performance.html"><span class="toc-num">12.</span> Oracle Performance</a></li>
+      <li><a href="failure-modes.html"><span class="toc-num">13.</span> Failure Modes</a></li>
+      <li><a href="frugalgpt.html"><span class="toc-num">14.</span> FrugalGPT</a></li>
+      <li><a href="routellm.html"><span class="toc-num">15.</span> RouteLLM</a></li>
+      <li><a href="llmrouter.html"><span class="toc-num">16.</span> LLMRouter</a></li>
+      <li><a href="vllm-semantic-router.html"><span class="toc-num">17.</span> vLLM Semantic Router</a></li>
+      <li><a href="where-this-leaves-us.html"><span class="toc-num">18.</span> Where This Leaves Us</a></li>
+      <li><a href="reading-list-foundational.html"><span class="toc-num">19.</span> Reading List — Early / Foundational</a></li>
+      <li><a href="reading-list-recent.html"><span class="toc-num">20.</span> Reading List — More Recent</a></li>
+      <li><a href="references.html"><span class="toc-num">21.</span> References</a></li>
+    </ol>
+  </div>
+</div>
+<main class="slide">
+  <header class="slide-header">
+    <span class="eyebrow">How routing is built</span>
+    <h1>Retraining</h1>
+  </header>
+  <section class="content">
+<ul>
+  <li>Another dimension is what happens when new LLMs become available</li>
+  <li>Most routers need to be retrained from scratch
+    <figure class="diagram">
+      <svg viewBox="0 0 600 320" width="600" height="320" role="img" aria-label="Diagram: Router 1 is trained on training set 1, containing models A, B, and C. When new model D arrives, it joins the set to form training set 2, and an entirely new Router 2 must be trained from scratch on the larger set.">
+        <defs>
+          <marker id="arrow-navy-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+          <marker id="arrow-red-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+          </marker>
+        </defs>
+        <rect class="dg-container" x="10" y="20" width="230" height="110" rx="10"/>
+        <text class="dg-caption" x="125" y="38">Training set 1</text>
+        <circle class="dg-circle" cx="65" cy="85" r="22"/>
+        <text class="dg-label" x="65" y="86">A</text>
+        <circle class="dg-circle" cx="125" cy="85" r="22"/>
+        <text class="dg-label" x="125" y="86">B</text>
+        <circle class="dg-circle" cx="185" cy="85" r="22"/>
+        <text class="dg-label" x="185" y="86">C</text>
+        <polygon class="dg-diamond" points="360,37 415,75 360,113 305,75"/>
+        <text class="dg-label" x="360" y="76">Router 1</text>
+        <path class="dg-arrow" d="M240,75 L303,75" marker-end="url(#arrow-navy-a)"/>
+
+        <circle class="dg-circle-chosen" cx="65" cy="235" r="24"/>
+        <text class="dg-label-chosen" x="65" y="236">D</text>
+        <rect class="dg-container" x="110" y="180" width="290" height="110" rx="10"/>
+        <text class="dg-caption" x="255" y="198">Training set 2</text>
+        <circle class="dg-circle" cx="165" cy="245" r="20"/>
+        <text class="dg-label" x="165" y="246">A</text>
+        <circle class="dg-circle" cx="225" cy="245" r="20"/>
+        <text class="dg-label" x="225" y="246">B</text>
+        <circle class="dg-circle" cx="285" cy="245" r="20"/>
+        <text class="dg-label" x="285" y="246">C</text>
+        <circle class="dg-circle-chosen" cx="345" cy="245" r="20"/>
+        <text class="dg-label-chosen" x="345" y="246">D</text>
+        <path class="dg-arrow" d="M89,235 L108,240" marker-end="url(#arrow-navy-a)"/>
+        <polygon class="dg-diamond-escalate" points="500,207 555,245 500,283 445,245"/>
+        <text class="dg-label" x="500" y="246">Router 2</text>
+        <path class="dg-arrow-escalate" d="M400,245 L443,245" marker-end="url(#arrow-red-a)"/>
+        <text class="dg-caption" x="480" y="190">retrain from scratch</text>
+      </svg>
+    </figure>
+  </li>
+  <li>Some, such as ones using clustering, only require the new model to be scored. The highest scoring model for each cluster is the best.
+    <figure class="diagram">
+      <svg viewBox="0 0 560 280" width="560" height="280" role="img" aria-label="Diagram: models A, B, and C already have frozen cluster scores; only the newly added model D needs to be evaluated and added to the shared cluster score pool.">
+        <defs>
+          <marker id="arrow-gray-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#b0b8bc"/>
+          </marker>
+          <marker id="arrow-navy-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2b6f77"/>
+          </marker>
+        </defs>
+        <text class="dg-caption-left" x="10" y="14">already scored (frozen)</text>
+        <circle class="dg-circle-alt" cx="60" cy="40" r="20"/>
+        <text class="dg-label-alt" x="60" y="41">A</text>
+        <circle class="dg-circle-alt" cx="60" cy="100" r="20"/>
+        <text class="dg-label-alt" x="60" y="101">B</text>
+        <circle class="dg-circle-alt" cx="60" cy="160" r="20"/>
+        <text class="dg-label-alt" x="60" y="161">C</text>
+        <circle class="dg-circle-chosen" cx="60" cy="230" r="22"/>
+        <text class="dg-label-chosen" x="60" y="231">D</text>
+        <rect class="dg-box" x="260" y="95" width="240" height="50" rx="10"/>
+        <text class="dg-label" x="380" y="121">Cluster score pool</text>
+        <path class="dg-arrow-alt" d="M80,40 L258,105" marker-end="url(#arrow-gray-b)"/>
+        <path class="dg-arrow-alt" d="M80,100 L258,115" marker-end="url(#arrow-gray-b)"/>
+        <path class="dg-arrow-alt" d="M80,160 L258,130" marker-end="url(#arrow-gray-b)"/>
+        <path class="dg-arrow" d="M82,230 L258,140" marker-end="url(#arrow-navy-b)"/>
+        <text class="dg-caption-left" x="95" y="210">scoring now</text>
+      </svg>
+    </figure>
+  </li>
+</ul>
+  </section>
+</main>
+<script src="assets/nav.js?v=10"></script>
+</body>
+</html>

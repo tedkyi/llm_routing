@@ -76,7 +76,7 @@
 
 <hr class="section-divider">
 
-<p>By mid-2026 the project supports 11+ selection algorithms, from simple nearest-neighbor voting to online learning methods like Thompson sampling &mdash; illustrating how much the decision-algorithm menu from earlier in this talk has grown in practice.</p>
+<p>As of mid-2026 the project documents 11 current selection algorithms, from simple nearest-neighbor voting to live metrics-blending &mdash; illustrating how much the decision-algorithm menu from earlier in this talk has grown in practice. A few earlier proposals (marked below) didn&rsquo;t make it into the shipped algorithm set, but are kept here since they still map cleanly onto that taxonomy.</p>
 
 <div class="table-wrap">
 <table>
@@ -88,15 +88,35 @@
     <tr><td>ML-based</td><td>KMeans</td><td>Clustering &middot; new models cheap</td><td>Clusters requests and assigns models based on cluster-level quality and efficiency patterns.</td></tr>
     <tr><td>ML-based</td><td>SVM</td><td>Difficulty classifier &middot; offline</td><td>Learns nonlinear decision boundaries between model preferences using an RBF classifier.</td></tr>
     <tr><td>ML-based</td><td>MLP</td><td>Difficulty classifier &middot; offline</td><td>Uses a neural router to predict the best model from embeddings, with efficient inference through Candle.</td></tr>
-    <tr><td>Advanced</td><td>Static</td><td>No routing &mdash; fixed choice</td><td>Uses a fixed default model when predictability matters more than adaptation.</td></tr>
+    <tr><td>Advanced</td><td>Static</td><td>No routing &mdash; fixed choice</td><td>Uses a fixed default model or declared order when predictability matters more than adaptation.</td></tr>
     <tr><td>Advanced</td><td>Latency-Aware</td><td>Metrics &mdash; latency in objective</td><td>Selects the fastest candidate from TPOT and TTFT percentile data when latency budgets dominate.</td></tr>
-    <tr><td>Advanced</td><td>Elo</td><td>User preference &middot; online</td><td>Learns from user feedback and pairwise preferences using Bradley-Terry style rating updates.</td></tr>
+    <tr><td>Advanced</td><td>Multi Factor</td><td>Metrics &middot; multi-signal</td><td>Balances quality, latency, cost, and load at once, with optional SLO filters.</td></tr>
+    <tr class="deprecated"><td>Advanced</td><td>Elo *</td><td>User preference &middot; online</td><td>Learns from user feedback and pairwise preferences using Bradley-Terry style rating updates.</td></tr>
     <tr><td>Advanced</td><td><a href="https://arxiv.org/abs/2409.19886" target="_blank" rel="noopener">RouterDC</a></td><td>Clustering / similarity &middot; offline</td><td>Matches queries to model descriptions with dual-contrastive embedding similarity.</td></tr>
     <tr><td>Advanced</td><td><a href="https://arxiv.org/abs/2310.12963" target="_blank" rel="noopener">AutoMix</a></td><td>Uncertainty &middot; cascade escalation</td><td>Starts with cheaper models and escalates based on self-verification to balance cost and quality.</td></tr>
-    <tr><td>Advanced</td><td>Hybrid</td><td>Combined blocks &middot; metrics-weighted</td><td>Blends multiple methods such as quality, similarity, and cost with configurable weights.</td></tr>
-    <tr><td>Advanced</td><td>Thompson Sampling</td><td>RL (bandit) &middot; online</td><td>Balances exploration and exploitation online so routing can keep learning while serving production traffic.</td></tr>
-    <tr><td>Advanced</td><td><a href="https://arxiv.org/abs/2511.08590" target="_blank" rel="noopener">GMTRouter</a></td><td>User preference &middot; multi-turn state</td><td>Personalizes model choice from multi-turn interaction history with graph-based routing.</td></tr>
-    <tr><td>Advanced</td><td><a href="https://arxiv.org/abs/2506.09033" target="_blank" rel="noopener">Router-R1</a></td><td>RL &middot; multi-round state</td><td>Uses an external router model to reason about the request before choosing a downstream model.</td></tr>
+    <tr><td>Advanced</td><td>Prompt</td><td>Difficulty / capability &middot; LLM-judged</td><td>Lets a bounded helper model choose directly from the declared candidate models.</td></tr>
+    <tr><td>Advanced</td><td>Hybrid</td><td>Combined blocks &middot; metrics-weighted</td><td>Blends multiple selector scores such as quality, similarity, and cost with configurable weights.</td></tr>
+    <tr class="deprecated"><td>Advanced</td><td>Thompson Sampling *</td><td>RL (bandit) &middot; online</td><td>Balances exploration and exploitation online so routing can keep learning while serving production traffic.</td></tr>
+    <tr class="deprecated"><td>Advanced</td><td><a href="https://arxiv.org/abs/2511.08590" target="_blank" rel="noopener">GMTRouter</a> *</td><td>User preference &middot; multi-turn state</td><td>Personalizes model choice from multi-turn interaction history with graph-based routing.</td></tr>
+    <tr class="deprecated"><td>Advanced</td><td><a href="https://arxiv.org/abs/2506.09033" target="_blank" rel="noopener">Router-R1</a> *</td><td>RL &middot; multi-round state</td><td>Uses an external router model to reason about the request before choosing a downstream model.</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="table-footnote">* No longer documented as a current vLLM Semantic Router algorithm &mdash; kept here to illustrate the taxonomy.</p>
+
+<p>Beyond single-model selection, the project also ships five &ldquo;Looper&rdquo; algorithms that orchestrate multiple models per request instead of picking just one:</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Method</th><th>Where it fits in the taxonomy</th><th>What it does</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Confidence</td><td>Workflow = cascade with escalation policy</td><td>Escalates sequentially through models until confidence clears a threshold.</td></tr>
+    <tr><td>Ratings</td><td>Workflow = parallel + aggregate</td><td>Gets one response from each candidate with bounded concurrency, similar to consensus voting.</td></tr>
+    <tr><td>ReMoM</td><td>RL / multi-round &middot; reasoning synthesis</td><td>Explores several reasoning paths across multiple rounds, then synthesizes a final answer.</td></tr>
+    <tr><td>Fusion</td><td>Workflow = parallel + aggregate, panel + judge</td><td>Runs an analysis panel across models, then a judge/synthesis pass merges the results.</td></tr>
+    <tr><td>Workflows</td><td>Workflow = planner + multi-step</td><td>Executes a bounded static or planner-generated multi-worker flow.</td></tr>
   </tbody>
 </table>
 </div>
